@@ -16,6 +16,9 @@ dependencies:
   get: ^4.6.1
   flutter_easylogger: ^2.3.3
   settings_ui: ^2.0.2
+  images_picker: ^1.2.11
+  scan: ^1.6.0
+  http: ^0.13.5
 
 dev_dependencies:
   flutter_test:

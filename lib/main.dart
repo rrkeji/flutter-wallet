@@ -5,6 +5,7 @@ import 'package:idns_wallet/themes/theme.dart';
 import 'package:flutter_easylogger/flutter_logger.dart';
 import 'package:idns_wallet/messages/messages.dart';
 import 'package:idns_wallet/screens/main/main_screen.dart';
+import 'package:idns_wallet/screens/scan/scan_screen.dart';
 import 'package:idns_wallet/screens/welcome/welcome_screen.dart';
 import 'package:idns_wallet/controllers/controllers.dart';
 
@@ -51,6 +52,10 @@ void main() {
           page: () => MainPage(
             title: '',
           ),
+        ),
+        GetPage(
+          name: '/scan',
+          page: () => QRScannerScreen(config: QRScannerPageConfig()),
         ),
       ]));
 }

@@ -1,11 +1,12 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:idns_wallet/model/data.dart';
+import 'package:idns_wallet/models/data.dart';
 import 'package:idns_wallet/themes/light_color.dart';
 import 'package:idns_wallet/themes/theme.dart';
 import 'package:idns_wallet/widgets/product_card.dart';
 import 'package:idns_wallet/widgets/identity_icon.dart';
 import 'package:idns_wallet/widgets/extentions.dart';
+import 'package:get/get.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -33,7 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget _categoryWidget() {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10),
+      margin: const EdgeInsets.symmetric(vertical: 2),
       width: AppTheme.fullWidth(context),
       height: 80,
       child: ListView(
@@ -104,7 +105,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: TextField(
                 decoration: InputDecoration(
                     border: InputBorder.none,
-                    hintText: "Search Products",
+                    hintText: "筛选证书".tr,
                     hintStyle: TextStyle(fontSize: 12),
                     contentPadding:
                         EdgeInsets.only(left: 10, right: 10, bottom: 0, top: 5),
@@ -112,7 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
           ),
-          SizedBox(width: 20),
+          SizedBox(width: 10),
           _icon(Icons.filter_list, color: Colors.black54)
         ],
       ),
@@ -122,7 +123,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height - 210,
+      height: MediaQuery.of(context).size.height,
       child: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         dragStartBehavior: DragStartBehavior.down,
@@ -130,8 +131,8 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            _search(),
             _categoryWidget(),
+            _search(),
             _productWidget(),
           ],
         ),

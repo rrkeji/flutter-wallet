@@ -1,14 +1,17 @@
-import 'package:idns_wallet/model/category.dart';
-import 'package:idns_wallet/model/product.dart';
+import 'package:idns_wallet/models/category.dart';
+import 'package:idns_wallet/models/product.dart';
 import './identity.dart';
 
 class AppData {
   static List<IdentityModel> identities = [
     IdentityModel(
-        id: 1, name: "程序员", image: 'assets/shoe_thumb_2.png', isSelected: true),
-    IdentityModel(id: 2, name: "学生", image: 'assets/jacket.png'),
-    IdentityModel(id: 3, name: "4K", image: 'assets/watch.png'),
-    IdentityModel(id: 4, name: "8K", image: 'assets/watch.png'),
+        id: "1",
+        name: "程序员",
+        image: 'assets/shoe_thumb_2.png',
+        isSelected: true),
+    IdentityModel(id: "2", name: "学生", image: 'assets/jacket.png'),
+    IdentityModel(id: "3", name: "4K", image: 'assets/watch.png'),
+    IdentityModel(id: "4", name: "8K", image: 'assets/watch.png'),
   ];
 
   static List<Product> productList = [

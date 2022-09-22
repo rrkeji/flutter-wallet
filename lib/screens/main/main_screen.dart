@@ -5,6 +5,7 @@ import 'package:idns_wallet/themes/theme.dart';
 import 'package:idns_wallet/widgets/BottomNavigationBar/bottom_navigation_bar.dart';
 import 'package:idns_wallet/widgets/title_text.dart';
 import 'package:idns_wallet/widgets/extentions.dart';
+import 'package:flutter_easylogger/flutter_logger.dart';
 import '../screens.dart';
 
 class MainPage extends StatefulWidget {
@@ -20,7 +21,6 @@ class _MainPageState extends State<MainPage> {
   Widget currentPage = MyHomePage(
     title: '',
   );
-
   String title = 'identity and credential'.tr;
 
   Widget _appBar() {
@@ -29,20 +29,20 @@ class _MainPageState extends State<MainPage> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          RotatedBox(
-            quarterTurns: 4,
-            child: _icon(Icons.qr_code_scanner, color: Colors.black54),
-          ),
-          RotatedBox(
-            quarterTurns: 4,
-            child: _icon(Icons.perm_identity, color: Colors.black54),
-          )
+          _icon(Icons.qr_code_scanner, () {
+            Get.toNamed("/scan");
+          }, color: Colors.black54),
+          _icon(Icons.perm_identity, () {
+            Get.toNamed("/scan");
+          }, color: Colors.black54)
         ],
       ),
     );
   }
 
-  Widget _icon(IconData icon, {Color color = LightColor.iconColor}) {
+  //
+  Widget _icon(IconData icon, void Function()? onTap,
+      {Color color = LightColor.iconColor}) {
     return Container(
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
@@ -53,40 +53,11 @@ class _MainPageState extends State<MainPage> {
         icon,
         color: color,
       ),
-    ).ripple(() {}, borderRadius: BorderRadius.all(Radius.circular(13)));
-  }
-
-  Widget _title() {
-    return Container(
-        margin: AppTheme.padding,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                TitleText(
-                  text: title,
-                  fontSize: 27,
-                  fontWeight: FontWeight.w400,
-                ),
-                TitleText(
-                  text: title,
-                  fontSize: 27,
-                  fontWeight: FontWeight.w700,
-                ),
-              ],
-            ),
-            Spacer(),
-            Container(
-              padding: EdgeInsets.all(10),
-              child: Icon(
-                Icons.delete_outline,
-                color: LightColor.orange,
-              ),
-            ).ripple(() {}, borderRadius: BorderRadius.all(Radius.circular(13)))
-          ],
-        ));
+    ).ripple(() {
+      if (onTap != null) {
+        onTap();
+      }
+    }, borderRadius: BorderRadius.all(Radius.circular(13)));
   }
 
   void onBottomIconPressed(int index) {

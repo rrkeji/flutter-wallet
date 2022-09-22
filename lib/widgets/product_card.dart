@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:idns_wallet/model/product.dart';
+import 'package:idns_wallet/models/product.dart';
 import 'package:idns_wallet/themes/light_color.dart';
 import 'package:idns_wallet/widgets/title_text.dart';
 import 'package:idns_wallet/widgets/extentions.dart';

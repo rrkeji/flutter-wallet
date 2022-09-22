@@ -11,5 +11,5 @@ void idnsWalletPutService() {
   Logger.d("put idns services!");
 
   //
-  Get.put(IdnsWalletIdentityService(), permanent: true);
+  Get.put(IdnsIdentityService(), permanent: true);
 }
