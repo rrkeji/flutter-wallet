@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:idns_wallet/models/data.dart';
 import 'package:idns_wallet/themes/light_color.dart';
 import 'package:idns_wallet/themes/theme.dart';
-import 'package:idns_wallet/widgets/product_card.dart';
+import 'package:idns_wallet/widgets/vc_card.dart';
 import 'package:idns_wallet/widgets/identity_icon.dart';
 import 'package:idns_wallet/widgets/extentions.dart';
 import 'package:get/get.dart';
@@ -71,13 +71,13 @@ class _MyHomePageState extends State<MyHomePage> {
             crossAxisSpacing: 20),
         padding: EdgeInsets.only(left: 20),
         scrollDirection: Axis.horizontal,
-        children: AppData.productList
+        children: AppData.vcList
             .map(
-              (product) => ProductCard(
-                product: product,
+              (vc) => VerifiableCredentialCard(
+                verifiableCredential: vc,
                 onSelected: (model) {
                   setState(() {
-                    AppData.productList.forEach((item) {
+                    AppData.vcList.forEach((item) {
                       item.isSelected = false;
                     });
                     model.isSelected = true;

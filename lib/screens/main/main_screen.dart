@@ -67,17 +67,17 @@ class _MainPageState extends State<MainPage> {
           title: '',
         );
       });
+    } else if (index == 2) {
+      setState(() {
+        currentPage = const CredentialScreen();
+      });
     } else if (index == 1) {
       setState(() {
         currentPage = IdentityScreen();
       });
-    } else if (index == 2) {
-      setState(() {
-        currentPage = VerifiableCredentialScreen();
-      });
     } else if (index == 3) {
       setState(() {
-        currentPage = SettingsScreen();
+        currentPage = const SettingsScreen();
       });
     } else {
       setState(() {

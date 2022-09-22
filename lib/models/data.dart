@@ -1,6 +1,6 @@
 import 'package:idns_wallet/models/category.dart';
+import 'package:idns_wallet/models/models.dart';
 import 'package:idns_wallet/models/product.dart';
-import './identity.dart';
 
 class AppData {
   static List<IdentityModel> identities = [
@@ -14,23 +14,97 @@ class AppData {
     IdentityModel(id: "4", name: "8K", image: 'assets/watch.png'),
   ];
 
-  static List<Product> productList = [
-    Product(
-        id: 1,
+  static List<VerifiableCredentialModel> vcList = [
+    VerifiableCredentialModel(
+        id: "1",
         name: 'Nike Air Max 200',
-        price: 240.00,
+        isSelected: true,
+        image: 'assets/shooe_tilt_1.png'),
+    VerifiableCredentialModel(
+        id: "2", name: 'Nike Air Max 97', image: 'assets/shoe_tilt_2.png'),
+  ];
+
+  static List<CredentialModel> credentialList = [
+    CredentialModel(
+        id: "1",
+        name: 'Nike Air Max 200',
         isSelected: true,
         isliked: false,
-        image: 'assets/shooe_tilt_1.png',
+        image: 'assets/small_tilt_shoe_1.png',
         category: "Trending Now"),
-    Product(
-        id: 2,
+    CredentialModel(
+        id: "2",
         name: 'Nike Air Max 97',
-        price: 220.00,
         isliked: false,
-        image: 'assets/shoe_tilt_2.png',
+        image: 'assets/small_tilt_shoe_2.png',
+        category: "Trending Now"),
+    CredentialModel(
+        id: "1",
+        name: 'Nike Air Max 92607',
+        isliked: false,
+        image: 'assets/small_tilt_shoe_3.png',
+        category: "Trending Now"),
+    CredentialModel(
+        id: "2",
+        name: 'Nike Air Max 200',
+        isSelected: true,
+        isliked: false,
+        image: 'assets/small_tilt_shoe_1.png',
+        category: "Trending Now"),
+    CredentialModel(
+        id: "1",
+        name: 'Nike Air Max 200',
+        isSelected: true,
+        isliked: false,
+        image: 'assets/small_tilt_shoe_1.png',
+        category: "Trending Now"),
+    CredentialModel(
+        id: "2",
+        name: 'Nike Air Max 97',
+        isliked: false,
+        image: 'assets/small_tilt_shoe_2.png',
+        category: "Trending Now"),
+    CredentialModel(
+        id: "1",
+        name: 'Nike Air Max 92607',
+        isliked: false,
+        image: 'assets/small_tilt_shoe_3.png',
+        category: "Trending Now"),
+    CredentialModel(
+        id: "2",
+        name: 'Nike Air Max 200',
+        isSelected: true,
+        isliked: false,
+        image: 'assets/small_tilt_shoe_1.png',
+        category: "Trending Now"),
+    CredentialModel(
+        id: "1",
+        name: 'Nike Air Max 200',
+        isSelected: true,
+        isliked: false,
+        image: 'assets/small_tilt_shoe_1.png',
+        category: "Trending Now"),
+    CredentialModel(
+        id: "2",
+        name: 'Nike Air Max 97',
+        isliked: false,
+        image: 'assets/small_tilt_shoe_2.png',
+        category: "Trending Now"),
+    CredentialModel(
+        id: "1",
+        name: 'Nike Air Max 92607',
+        isliked: false,
+        image: 'assets/small_tilt_shoe_3.png',
+        category: "Trending Now"),
+    CredentialModel(
+        id: "2",
+        name: 'Nike Air Max 200',
+        isSelected: true,
+        isliked: false,
+        image: 'assets/small_tilt_shoe_1.png',
         category: "Trending Now"),
   ];
+
   static List<Product> cartList = [
     Product(
         id: 1,
