@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:images_picker/images_picker.dart';
 import 'package:scan/scan.dart';
+import 'package:get/get.dart';
+
+import 'package:idns_wallet/themes/theme.dart';
 
 /// 扫码页面
 class QRScannerScreen extends StatefulWidget {
@@ -24,55 +27,85 @@ class _QRScannerPageState extends State<QRScannerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('扫码'),
+      body: SafeArea(
+        child: Stack(
+          fit: StackFit.expand,
+          children: <Widget>[
+            ScanView(
+              controller: controller,
+              scanAreaScale: widget.config.scanAreaSize,
+              scanLineColor: widget.config.scanLineColor,
+              onCapture: (String data) async {
+                await showResult(content: '扫码结果\t$data');
+                controller.resume();
+              },
+            ),
+            Positioned(
+              left: 0,
+              top: 4,
+              width: AppTheme.fullWidth(context),
+              child: StatefulBuilder(
+                builder: (BuildContext context, StateSetter setState) {
+                  stateSetter = setState;
+                  return Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      MaterialButton(
+                          child: Icon(Icons.arrow_back_ios,
+                              size: 30, color: Colors.greenAccent),
+                          onPressed: () {
+                            //
+                            Get.back();
+                          }),
+                      MaterialButton(
+                          child: Icon(Icons.perm_identity,
+                              size: 30, color: Colors.greenAccent),
+                          onPressed: () {
+                            //
+                            Get.back();
+                          }),
+                    ],
+                  );
+                },
+              ),
+            ),
+            Positioned(
+              left: 50,
+              bottom: 100,
+              child: StatefulBuilder(
+                builder: (BuildContext context, StateSetter setState) {
+                  stateSetter = setState;
+                  return MaterialButton(
+                      child:
+                          Icon(lightIcon, size: 30, color: Colors.greenAccent),
+                      onPressed: () {
+                        controller.toggleTorchMode();
+                        if (lightIcon == Icons.flash_on) {
+                          lightIcon = Icons.flash_off;
+                        } else {
+                          lightIcon = Icons.flash_on;
+                        }
+                        setState(() {});
+                      });
+                },
+              ),
+            ),
+            Positioned(
+              right: 50,
+              bottom: 100,
+              child: MaterialButton(
+                  child: Icon(Icons.image,
+                      size: 30, color: Color.fromRGBO(4, 184, 67, 1)),
+                  onPressed: () async {
+                    await pickImage();
+                    // DialogUtil.showCommonDialog(context, '$result');
+                  }),
+            ),
+          ],
         ),
-        body: _buildBody());
-  }
-
-  Widget _buildBody() {
-    return Stack(children: [
-      ScanView(
-        controller: controller,
-        scanAreaScale: widget.config.scanAreaSize,
-        scanLineColor: widget.config.scanLineColor,
-        onCapture: (String data) async {
-          await showResult(content: '扫码结果\t$data');
-          controller.resume();
-        },
       ),
-      Positioned(
-        left: 50,
-        bottom: 100,
-        child: StatefulBuilder(
-          builder: (BuildContext context, StateSetter setState) {
-            stateSetter = setState;
-            return MaterialButton(
-                child: Icon(lightIcon, size: 30, color: Colors.greenAccent),
-                onPressed: () {
-                  controller.toggleTorchMode();
-                  if (lightIcon == Icons.flash_on) {
-                    lightIcon = Icons.flash_off;
-                  } else {
-                    lightIcon = Icons.flash_on;
-                  }
-                  setState(() {});
-                });
-          },
-        ),
-      ),
-      Positioned(
-        right: 50,
-        bottom: 100,
-        child: MaterialButton(
-            child: Icon(Icons.image,
-                size: 30, color: Color.fromRGBO(4, 184, 67, 1)),
-            onPressed: () async {
-              await pickImage();
-              // DialogUtil.showCommonDialog(context, '$result');
-            }),
-      ),
-    ]);
+    );
   }
 
   Future<Future<Object?>> showResult({required String content}) async {

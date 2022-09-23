@@ -6,16 +6,18 @@ import 'package:idns_wallet/widgets/title_text.dart';
 import 'package:idns_wallet/widgets/extentions.dart';
 
 class IdentityScreen extends StatefulWidget {
-  IdentityScreen({Key? key}) : super(key: key);
-
+  const IdentityScreen({super.key});
   @override
-  _ProductDetailPageState createState() => _ProductDetailPageState();
+  _IdentityScreenState createState() => _IdentityScreenState();
 }
 
-class _ProductDetailPageState extends State<IdentityScreen>
+class _IdentityScreenState extends State<IdentityScreen>
     with TickerProviderStateMixin {
   AnimationController? controller;
+
   Animation<double>? animation;
+
+  bool isLiked = true;
 
   @override
   void initState() {
@@ -33,74 +35,7 @@ class _ProductDetailPageState extends State<IdentityScreen>
     super.dispose();
   }
 
-  bool isLiked = true;
-  Widget _appBar() {
-    return Container(
-      padding: AppTheme.padding,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          _icon(
-            Icons.arrow_back_ios,
-            color: Colors.black54,
-            size: 15,
-            padding: 12,
-            isOutLine: true,
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-          _icon(isLiked ? Icons.favorite : Icons.favorite_border,
-              color: isLiked ? LightColor.red : LightColor.lightGrey,
-              size: 15,
-              padding: 12,
-              isOutLine: false, onPressed: () {
-            setState(() {
-              isLiked = !isLiked;
-            });
-          }),
-        ],
-      ),
-    );
-  }
-
-  Widget _icon(
-    IconData icon, {
-    Color color = LightColor.iconColor,
-    double size = 20,
-    double padding = 10,
-    bool isOutLine = false,
-    Function? onPressed,
-  }) {
-    return Container(
-      height: 40,
-      width: 40,
-      padding: EdgeInsets.all(padding),
-      // margin: EdgeInsets.all(padding),
-      decoration: BoxDecoration(
-        border: Border.all(
-            color: LightColor.iconColor,
-            style: isOutLine ? BorderStyle.solid : BorderStyle.none),
-        borderRadius: BorderRadius.all(Radius.circular(13)),
-        color:
-            isOutLine ? Colors.transparent : Theme.of(context).backgroundColor,
-        boxShadow: <BoxShadow>[
-          BoxShadow(
-              color: Color(0xfff8f8f8),
-              blurRadius: 5,
-              spreadRadius: 10,
-              offset: Offset(5, 5)),
-        ],
-      ),
-      child: Icon(icon, color: color, size: size),
-    ).ripple(() {
-      if (onPressed != null) {
-        onPressed();
-      }
-    }, borderRadius: BorderRadius.all(Radius.circular(13)));
-  }
-
-  Widget _productImage() {
+  Widget _IdentityImage() {
     return AnimatedBuilder(
       builder: (context, child) {
         return AnimatedOpacity(
@@ -114,61 +49,21 @@ class _ProductDetailPageState extends State<IdentityScreen>
         alignment: Alignment.bottomCenter,
         children: <Widget>[
           TitleText(
-            text: "AIP",
-            fontSize: 160,
+            text: "身份图片",
+            fontSize: 90,
             color: LightColor.lightGrey,
           ),
-          Image.asset('assets/show_1.png')
+          // Image.asset('assets/show_1.png')
         ],
-      ),
-    );
-  }
-
-  Widget _categoryWidget() {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 0),
-      width: AppTheme.fullWidth(context),
-      height: 80,
-      child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children:
-              AppData.showThumbnailList.map((x) => _thumbnail(x)).toList()),
-    );
-  }
-
-  Widget _thumbnail(String image) {
-    return AnimatedBuilder(
-      animation: animation!,
-      //  builder: null,
-      builder: (context, child) => AnimatedOpacity(
-        opacity: animation!.value,
-        duration: Duration(milliseconds: 500),
-        child: child,
-      ),
-      child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 10),
-        child: Container(
-          height: 40,
-          width: 50,
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: LightColor.grey,
-            ),
-            borderRadius: BorderRadius.all(Radius.circular(13)),
-            // color: Theme.of(context).backgroundColor,
-          ),
-          child: Image.asset(image),
-        ).ripple(() {}, borderRadius: BorderRadius.all(Radius.circular(13))),
       ),
     );
   }
 
   Widget _detailWidget() {
     return DraggableScrollableSheet(
-      maxChildSize: .8,
-      initialChildSize: .53,
-      minChildSize: .53,
+      maxChildSize: 1,
+      initialChildSize: .7,
+      minChildSize: .7,
       builder: (context, scrollController) {
         return Container(
           padding: AppTheme.padding.copyWith(bottom: 0),
@@ -201,7 +96,7 @@ class _ProductDetailPageState extends State<IdentityScreen>
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      TitleText(text: "NIKE AIR MAX 200", fontSize: 25),
+                      TitleText(text: "身份名称", fontSize: 25),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: <Widget>[
@@ -214,7 +109,7 @@ class _ProductDetailPageState extends State<IdentityScreen>
                                 color: LightColor.red,
                               ),
                               TitleText(
-                                text: "240",
+                                text: "价值",
                                 fontSize: 25,
                               ),
                             ],
@@ -240,11 +135,15 @@ class _ProductDetailPageState extends State<IdentityScreen>
                 SizedBox(
                   height: 20,
                 ),
-                _availableSize(),
+                _values(),
                 SizedBox(
                   height: 20,
                 ),
                 _availableColor(),
+                SizedBox(
+                  height: 20,
+                ),
+                _labels(),
                 SizedBox(
                   height: 20,
                 ),
@@ -257,29 +156,29 @@ class _ProductDetailPageState extends State<IdentityScreen>
     );
   }
 
-  Widget _availableSize() {
+  Widget _values() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         TitleText(
-          text: "Available Size",
+          text: "统计",
           fontSize: 14,
         ),
         SizedBox(height: 20),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            _sizeWidget("US 6"),
-            _sizeWidget("US 7", isSelected: true),
-            _sizeWidget("US 8"),
-            _sizeWidget("US 9"),
+            _valueWidget("证书数"),
+            _valueWidget("粉丝数", isSelected: true),
+            _valueWidget("赞"),
+            _valueWidget("踩"),
           ],
         )
       ],
     );
   }
 
-  Widget _sizeWidget(String text, {bool isSelected = false}) {
+  Widget _valueWidget(String text, {bool isSelected = false}) {
     return Container(
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
@@ -303,7 +202,7 @@ class _ProductDetailPageState extends State<IdentityScreen>
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         TitleText(
-          text: "Available Size",
+          text: "选择身份色",
           fontSize: 14,
         ),
         SizedBox(height: 20),
@@ -347,12 +246,12 @@ class _ProductDetailPageState extends State<IdentityScreen>
     );
   }
 
-  Widget _description() {
+  Widget _labels() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         TitleText(
-          text: "Available Size",
+          text: "身份标签",
           fontSize: 14,
         ),
         SizedBox(height: 20),
@@ -361,19 +260,23 @@ class _ProductDetailPageState extends State<IdentityScreen>
     );
   }
 
-  FloatingActionButton _flotingButton() {
-    return FloatingActionButton(
-      onPressed: () {},
-      backgroundColor: LightColor.orange,
-      child: Icon(Icons.shopping_basket,
-          color: Theme.of(context).floatingActionButtonTheme.backgroundColor),
+  Widget _description() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        TitleText(
+          text: "身份描述",
+          fontSize: 14,
+        ),
+        SizedBox(height: 20),
+        Text(AppData.description),
+      ],
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: _flotingButton(),
       body: SafeArea(
         child: Container(
           decoration: BoxDecoration(
@@ -389,9 +292,7 @@ class _ProductDetailPageState extends State<IdentityScreen>
             children: <Widget>[
               Column(
                 children: <Widget>[
-                  _appBar(),
-                  _productImage(),
-                  _categoryWidget(),
+                  _IdentityImage(),
                 ],
               ),
               _detailWidget()
