@@ -17,6 +17,8 @@ class TitleText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(text,
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
         style: GoogleFonts.mulish(
             fontSize: fontSize, fontWeight: fontWeight, color: color));
   }

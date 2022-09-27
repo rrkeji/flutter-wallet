@@ -11,8 +11,13 @@ class VerifiableCredentialCard extends StatelessWidget {
 
   final ValueChanged<VerifiableCredentialModel> onSelected;
 
+  final bool isSelected;
+
   VerifiableCredentialCard(
-      {Key? key, required this.verifiableCredential, required this.onSelected})
+      {Key? key,
+      required this.verifiableCredential,
+      required this.onSelected,
+      required this.isSelected})
       : super(key: key);
 
   @override
@@ -25,8 +30,7 @@ class VerifiableCredentialCard extends StatelessWidget {
           BoxShadow(color: Color(0xfff8f8f8), blurRadius: 15, spreadRadius: 10),
         ],
       ),
-      margin: EdgeInsets.symmetric(
-          vertical: !verifiableCredential.isSelected ? 20 : 0),
+      margin: EdgeInsets.symmetric(vertical: isSelected ? 20 : 0),
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Stack(
@@ -51,7 +55,7 @@ class VerifiableCredentialCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                SizedBox(height: verifiableCredential.isSelected ? 15 : 0),
+                SizedBox(height: isSelected ? 15 : 0),
                 Expanded(
                   child: Stack(
                     alignment: Alignment.center,
@@ -66,17 +70,17 @@ class VerifiableCredentialCard extends StatelessWidget {
                 ),
                 // SizedBox(height: 5),
                 TitleText(
-                  text: verifiableCredential.sourceIdentity,
-                  fontSize: verifiableCredential.isSelected ? 16 : 14,
+                  text: verifiableCredential.metaCredentialName,
+                  fontSize: isSelected ? 16 : 14,
                 ),
                 TitleText(
-                  text: verifiableCredential.sourceIdentity,
-                  fontSize: verifiableCredential.isSelected ? 14 : 12,
+                  text: verifiableCredential.metaCredentialName,
+                  fontSize: isSelected ? 14 : 12,
                   color: LightColor.orange,
                 ),
                 TitleText(
-                  text: verifiableCredential.sourceIdentity.toString(),
-                  fontSize: verifiableCredential.isSelected ? 18 : 16,
+                  text: verifiableCredential.metaCredentialName.toString(),
+                  fontSize: isSelected ? 18 : 16,
                 ),
               ],
             ),

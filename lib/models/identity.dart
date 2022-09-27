@@ -1,14 +1,16 @@
+import 'package:idns_wallet/generated/proto_types.dart';
+
 class IdentityModel {
   String id;
+  String identity;
   String name;
   String avatar;
   String identityType;
   String description;
-  bool isSelected;
   IdentityModel(
       {required this.id,
+      required this.identity,
       required this.name,
-      this.isSelected = false,
       required this.avatar,
       this.identityType = "",
       this.description = ""});
@@ -16,10 +18,22 @@ class IdentityModel {
   factory IdentityModel.fromJson(Map<String, dynamic> json) {
     return IdentityModel(
       id: json['id'] as String,
+      identity: json['identity'] as String,
       name: json['name'] as String,
       avatar: json['avatar'] as String,
       identityType: json['identityType'] as String,
       description: json['description'] as String,
+    );
+  }
+
+  factory IdentityModel.fromEntity(IdentityEntity entity) {
+    return IdentityModel(
+      id: entity.identity,
+      identity: entity.identity,
+      name: entity.name,
+      avatar: entity.avatar,
+      identityType: entity.identityType,
+      description: entity.description,
     );
   }
 

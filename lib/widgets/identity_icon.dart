@@ -13,7 +13,13 @@ class IdentityIcon extends StatelessWidget {
 
   final IdentityModel model;
 
-  IdentityIcon({Key? key, required this.model, required this.onSelected})
+  final bool isSelected;
+
+  IdentityIcon(
+      {Key? key,
+      required this.model,
+      required this.onSelected,
+      required this.isSelected})
       : super(key: key);
 
   Widget build(BuildContext context) {
@@ -26,16 +32,14 @@ class IdentityIcon extends StatelessWidget {
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(10)),
-                color: model.isSelected
-                    ? LightColor.background
-                    : Colors.transparent,
+                color: isSelected ? LightColor.background : Colors.transparent,
                 border: Border.all(
-                  color: model.isSelected ? LightColor.orange : LightColor.grey,
-                  width: model.isSelected ? 2 : 1,
+                  color: isSelected ? LightColor.orange : LightColor.grey,
+                  width: isSelected ? 2 : 1,
                 ),
                 boxShadow: <BoxShadow>[
                   BoxShadow(
-                    color: model.isSelected ? Color(0xfffbf2ef) : Colors.white,
+                    color: isSelected ? Color(0xfffbf2ef) : Colors.white,
                     blurRadius: 10,
                     spreadRadius: 5,
                     offset: Offset(5, 5),
@@ -47,8 +51,7 @@ class IdentityIcon extends StatelessWidget {
                   // model.image != null ? Image.asset(model.image) : SizedBox(),
                   Icon(
                     Icons.perm_identity,
-                    color:
-                        model.isSelected ? LightColor.orange : LightColor.grey,
+                    color: isSelected ? LightColor.orange : LightColor.grey,
                   ),
                   model.name == null
                       ? Container()
@@ -58,7 +61,7 @@ class IdentityIcon extends StatelessWidget {
                             text: model.name,
                             fontWeight: FontWeight.w700,
                             fontSize: 15,
-                            color: model.isSelected
+                            color: isSelected
                                 ? LightColor.orange
                                 : LightColor.grey,
                           ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:idns_wallet/controllers/controllers.dart';
 import 'package:idns_wallet/services/services.dart';
 
 import '../../../components/already_have_an_account_acheck.dart';
@@ -33,12 +34,13 @@ class LoginForm extends StatelessWidget {
           Hero(
             tag: "login_btn",
             child: ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
                 //
-                LoginService.to.importAccount(
+                await LoginService.to.importAccount(
                     "rude slim service century shoulder expire toy shed word coyote under expect",
                     "123");
-                // Navigator.pushNamed(context, "/home");
+                await IdnsWalletHomeController.to.refreshList();
+                Navigator.pushNamed(context, "/home");
               },
               child: Text(
                 "登录".toUpperCase(),

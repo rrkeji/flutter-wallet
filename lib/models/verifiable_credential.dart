@@ -1,3 +1,5 @@
+import 'package:idns_wallet/generated/proto_types.dart';
+
 class VerifiableCredentialModel {
   String id;
   String sourceIdentity;
@@ -5,14 +7,12 @@ class VerifiableCredentialModel {
   String metaCredentialName;
   String cid;
   String description;
-  bool isSelected;
   VerifiableCredentialModel(
       {required this.id,
       required this.sourceIdentity,
       required this.holderIdentity,
       required this.metaCredentialName,
       required this.cid,
-      this.isSelected = false,
       this.description = ""});
 
   factory VerifiableCredentialModel.fromJson(Map<String, dynamic> json) {
@@ -23,6 +23,18 @@ class VerifiableCredentialModel {
       metaCredentialName: json['metaCredentialName'] as String,
       cid: json['cid'] as String,
       description: json['description'] as String,
+    );
+  }
+
+  factory VerifiableCredentialModel.fromEntity(
+      VerifiableCredentialEntity entity) {
+    return VerifiableCredentialModel(
+      id: entity.id,
+      sourceIdentity: entity.sourceIdentity,
+      holderIdentity: entity.holderIdentity,
+      metaCredentialName: entity.metaCredentialName,
+      cid: entity.cid,
+      description: entity.description,
     );
   }
 

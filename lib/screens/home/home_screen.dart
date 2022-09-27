@@ -1,10 +1,11 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:idns_wallet/models/data.dart';
+import 'package:idns_wallet/controllers/home_controller.dart';
 import 'package:idns_wallet/themes/light_color.dart';
 import 'package:idns_wallet/themes/theme.dart';
 import 'package:idns_wallet/widgets/vc_card.dart';
 import 'package:idns_wallet/widgets/identity_icon.dart';
+import 'package:idns_wallet/widgets/identity_add_icon.dart';
 import 'package:idns_wallet/widgets/extentions.dart';
 import 'package:get/get.dart';
 
@@ -20,16 +21,16 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   Widget _icon(IconData icon, {Color color = LightColor.iconColor}) {
     return Container(
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(13)),
+          borderRadius: const BorderRadius.all(Radius.circular(13)),
           color: Theme.of(context).backgroundColor,
           boxShadow: AppTheme.shadow),
       child: Icon(
         icon,
         color: color,
       ),
-    ).ripple(() {}, borderRadius: BorderRadius.all(Radius.circular(13)));
+    ).ripple(() {}, borderRadius: const BorderRadius.all(Radius.circular(13)));
   }
 
   Widget _categoryWidget() {
@@ -37,56 +38,62 @@ class _MyHomePageState extends State<MyHomePage> {
       margin: const EdgeInsets.symmetric(vertical: 2),
       width: AppTheme.fullWidth(context),
       height: 80,
-      child: ListView(
-        scrollDirection: Axis.horizontal,
-        children: AppData.identities
-            .map(
-              (category) => IdentityIcon(
-                model: category,
-                onSelected: (model) {
-                  setState(() {
-                    AppData.identities.forEach((item) {
-                      item.isSelected = false;
-                    });
-                    model.isSelected = true;
-                  });
-                },
-              ),
-            )
-            .toList(),
+      child: Obx(
+        () {
+          return ListView(
+              scrollDirection: Axis.horizontal,
+              children: (() {
+                //
+                List<Widget> identities = IdnsWalletHomeController.to.identities
+                    .map(
+                      (identity) => IdentityIcon(
+                        model: identity,
+                        onSelected: (model) {
+                          IdnsWalletHomeController.to
+                              .setCurrentIdentityId(model.id);
+                        },
+                        isSelected: identity.identity ==
+                            IdnsWalletHomeController.to.currentIdentityId.value,
+                      ) as Widget,
+                    )
+                    .toList();
+
+                identities.add(IdentityAddIcon());
+                //
+                return identities;
+              })());
+        },
       ),
     );
   }
 
   Widget _productWidget() {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10),
+      margin: const EdgeInsets.symmetric(vertical: 10),
       width: AppTheme.fullWidth(context),
       height: AppTheme.fullWidth(context) * .7,
-      child: GridView(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 1,
-            childAspectRatio: 4 / 3,
-            mainAxisSpacing: 30,
-            crossAxisSpacing: 20),
-        padding: EdgeInsets.only(left: 20),
-        scrollDirection: Axis.horizontal,
-        children: AppData.vcList
-            .map(
-              (vc) => VerifiableCredentialCard(
-                verifiableCredential: vc,
-                onSelected: (model) {
-                  setState(() {
-                    AppData.vcList.forEach((item) {
-                      item.isSelected = false;
-                    });
-                    model.isSelected = true;
-                  });
-                },
-              ),
-            )
-            .toList(),
-      ),
+      child: Obx(() {
+        return GridView(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 1,
+              childAspectRatio: 4 / 3,
+              mainAxisSpacing: 30,
+              crossAxisSpacing: 20),
+          padding: const EdgeInsets.only(left: 20),
+          scrollDirection: Axis.horizontal,
+          children: IdnsWalletHomeController.to.verifiableCredentials
+              .map(
+                (vc) => VerifiableCredentialCard(
+                  verifiableCredential: vc,
+                  onSelected: (model) {},
+                  isSelected: IdnsWalletHomeController
+                          .to.currentVerifiableCredentialId.value ==
+                      vc.id,
+                ),
+              )
+              .toList(),
+        );
+      }),
     );
   }
 
@@ -117,6 +124,15 @@ class _MyHomePageState extends State<MyHomePage> {
           _icon(Icons.filter_list, color: Colors.black54)
         ],
       ),
+    );
+  }
+
+  FloatingActionButton _flotingButton() {
+    return FloatingActionButton(
+      onPressed: () {},
+      backgroundColor: LightColor.orange,
+      child: Icon(Icons.shopping_basket,
+          color: Theme.of(context).floatingActionButtonTheme.backgroundColor),
     );
   }
 
