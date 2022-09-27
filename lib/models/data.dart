@@ -7,21 +7,28 @@ class AppData {
     IdentityModel(
         id: "1",
         name: "程序员",
-        image: 'assets/shoe_thumb_2.png',
+        avatar: 'assets/shoe_thumb_2.png',
         isSelected: true),
-    IdentityModel(id: "2", name: "学生", image: 'assets/jacket.png'),
-    IdentityModel(id: "3", name: "4K", image: 'assets/watch.png'),
-    IdentityModel(id: "4", name: "8K", image: 'assets/watch.png'),
+    IdentityModel(id: "2", name: "学生", avatar: 'assets/jacket.png'),
+    IdentityModel(id: "3", name: "4K", avatar: 'assets/watch.png'),
+    IdentityModel(id: "4", name: "8K", avatar: 'assets/watch.png'),
   ];
 
   static List<VerifiableCredentialModel> vcList = [
     VerifiableCredentialModel(
         id: "1",
-        name: 'Nike Air Max 200',
+        sourceIdentity: 'Nike Air Max 200',
+        holderIdentity: 'Nike Air Max 200',
+        metaCredentialName: 'Nike Air Max 200',
         isSelected: true,
-        image: 'assets/shooe_tilt_1.png'),
+        cid: 'assets/shooe_tilt_1.png'),
     VerifiableCredentialModel(
-        id: "2", name: 'Nike Air Max 97', image: 'assets/shoe_tilt_2.png'),
+        id: "1",
+        sourceIdentity: 'Nike Air Max 200',
+        holderIdentity: 'Nike Air Max 200',
+        metaCredentialName: 'Nike Air Max 200',
+        isSelected: true,
+        cid: 'assets/shooe_tilt_1.png'),
   ];
 
   static List<CredentialModel> credentialList = [

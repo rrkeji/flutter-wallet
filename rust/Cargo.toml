@@ -1,0 +1,32 @@
+[package]
+name = "flutter_link_idns_identity"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "link_idns_identity"
+crate-type = ["staticlib","cdylib"]
+
+[dependencies]
+anyhow = { version = "1", features = ["backtrace"] }
+flutter_rust_bridge = { version = "1.47.0" }
+bytes = "1.1"
+prost = "0.11"
+prost-types = "0.11"
+
+serde_json = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+lazy_static = "1.4.0"
+futures = "0.3"
+tracing-subscriber = { version = "0.3", features = ["fmt"] }
+tracing = "0.1.15"
+async-trait = "0.1"
+tokio = { version = "1", features = ["full"] }
+
+#MD5
+md5 = "0.7"
+
+#IDNS
+keys-idns-api = { version = "*", git = "https://github.com/rrkeji/identities-idns-api", branch = "master" }
+identities-idns-api = { version = "*", git = "https://github.com/rrkeji/identities-idns-api", branch = "master" }
+ipfs-idns-api = { version = "*", git = "https://github.com/rrkeji/identities-idns-api", branch = "master" }

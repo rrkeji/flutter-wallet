@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,10 +11,28 @@
 		1A4F4DFF87930B8AAF0BED81 /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA168DFE77D1108BCC94F70E /* Pods_Runner.framework */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
 		74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74858FAE1ED2DC5600515810 /* AppDelegate.swift */; };
+		85F2E4D328E153A500808760 /* liblink_idns_identity_static.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 85F2E4D028E1539100808760 /* liblink_idns_identity_static.a */; };
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		85F2E4CF28E1539100808760 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 85F2E4CB28E1539100808760 /* flutter_link_idns_identity.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CA6021A079FBC62D30B8A9A1;
+			remoteInfo = "link_idns_identity-staticlib";
+		};
+		85F2E4D128E1539E00808760 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 85F2E4CB28E1539100808760 /* flutter_link_idns_identity.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = CA6021A079FBCCC2850A44FB;
+			remoteInfo = "link_idns_identity-staticlib";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		9705A1C41CF9048500538489 /* Embed Frameworks */ = {
@@ -38,6 +56,7 @@
 		74858FAE1ED2DC5600515810 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		778DC4F4094FAC9321AA1C3D /* Pods-Runner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"; sourceTree = "<group>"; };
 		7AFA3C8E1D35360C0083082E /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Release.xcconfig; path = Flutter/Release.xcconfig; sourceTree = "<group>"; };
+		85F2E4CB28E1539100808760 /* flutter_link_idns_identity.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = flutter_link_idns_identity.xcodeproj; path = ../../rust/flutter_link_idns_identity.xcodeproj; sourceTree = "<group>"; };
 		9740EEB21CF90195004384FC /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Debug.xcconfig; path = Flutter/Debug.xcconfig; sourceTree = "<group>"; };
 		9740EEB31CF90195004384FC /* Generated.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Generated.xcconfig; path = Flutter/Generated.xcconfig; sourceTree = "<group>"; };
 		97C146EE1CF9000F007C117D /* Runner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Runner.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -54,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85F2E4D328E153A500808760 /* liblink_idns_identity_static.a in Frameworks */,
 				1A4F4DFF87930B8AAF0BED81 /* Pods_Runner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -61,6 +81,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		85F2E4CC28E1539100808760 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				85F2E4D028E1539100808760 /* liblink_idns_identity_static.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		89FCD0B3981531D5AAD75B2F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -102,6 +130,7 @@
 		97C146F01CF9000F007C117D /* Runner */ = {
 			isa = PBXGroup;
 			children = (
+				85F2E4CB28E1539100808760 /* flutter_link_idns_identity.xcodeproj */,
 				97C146FA1CF9000F007C117D /* Main.storyboard */,
 				97C146FD1CF9000F007C117D /* Assets.xcassets */,
 				97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */,
@@ -121,7 +150,6 @@
 				778DC4F4094FAC9321AA1C3D /* Pods-Runner.release.xcconfig */,
 				211C41A48901257B9CD53AD5 /* Pods-Runner.profile.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -144,6 +172,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				85F2E4D228E1539E00808760 /* PBXTargetDependency */,
 			);
 			name = Runner;
 			productName = Runner;
@@ -176,12 +205,28 @@
 			mainGroup = 97C146E51CF9000F007C117D;
 			productRefGroup = 97C146EF1CF9000F007C117D /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 85F2E4CC28E1539100808760 /* Products */;
+					ProjectRef = 85F2E4CB28E1539100808760 /* flutter_link_idns_identity.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				97C146ED1CF9000F007C117D /* Runner */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		85F2E4D028E1539100808760 /* liblink_idns_identity_static.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = liblink_idns_identity_static.a;
+			remoteRef = 85F2E4CF28E1539100808760 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		97C146EC1CF9000F007C117D /* Resources */ = {
@@ -278,6 +323,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		85F2E4D228E1539E00808760 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "link_idns_identity-staticlib";
+			targetProxy = 85F2E4D128E1539E00808760 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		97C146FA1CF9000F007C117D /* Main.storyboard */ = {

@@ -1,8 +1,12 @@
 import './_base_service.dart';
 import 'package:idns_wallet/models/models.dart';
+import 'package:get/get.dart';
 
 //
 class IdnsIdentityService extends BaseCrudService<IdentityModel> {
+  //
+  static IdnsIdentityService get to => Get.find<IdnsIdentityService>();
+
   IdnsIdentityService()
       : super(
             config: CrudServiceConfig(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:idns_wallet/services/services.dart';
 
 import '../../../components/already_have_an_account_acheck.dart';
 import '../../../constants.dart';
@@ -33,7 +34,11 @@ class LoginForm extends StatelessWidget {
             tag: "login_btn",
             child: ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, "/home");
+                //
+                LoginService.to.importAccount(
+                    "rude slim service century shoulder expire toy shed word coyote under expect",
+                    "123");
+                // Navigator.pushNamed(context, "/home");
               },
               child: Text(
                 "登录".toUpperCase(),

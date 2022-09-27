@@ -3,6 +3,7 @@ import 'package:images_picker/images_picker.dart';
 import 'package:scan/scan.dart';
 import 'package:get/get.dart';
 
+import 'package:idns_wallet/rust_api.dart';
 import 'package:idns_wallet/themes/theme.dart';
 
 /// 扫码页面
@@ -36,7 +37,7 @@ class _QRScannerPageState extends State<QRScannerScreen> {
               scanAreaScale: widget.config.scanAreaSize,
               scanLineColor: widget.config.scanLineColor,
               onCapture: (String data) async {
-                await showResult(content: '扫码结果\t$data');
+                await showResult(content: '扫码结果:\t$data');
                 controller.resume();
               },
             ),
@@ -195,6 +196,8 @@ class _QRScannerPageState extends State<QRScannerScreen> {
           result.add(value);
         }
       }
+      var test = await greet();
+      result.add(test);
       showResult(content: result.toString());
     }
   }

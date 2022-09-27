@@ -8,13 +8,17 @@ import 'package:idns_wallet/screens/main/main_screen.dart';
 import 'package:idns_wallet/screens/scan/scan_screen.dart';
 import 'package:idns_wallet/screens/welcome/welcome_screen.dart';
 import 'package:idns_wallet/controllers/controllers.dart';
+import 'package:idns_wallet/services/services.dart';
+import 'package:idns_wallet/rust_api.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
   runApp(GetMaterialApp(
       onInit: () async {
-        //
+        await initRustApi();
+        //初始化
+        idnsWalletPutService();
         idnsWalletPutController();
       },
       onReady: () {

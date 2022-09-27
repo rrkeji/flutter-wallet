@@ -1,18 +1,24 @@
 import 'package:get/get.dart';
+import 'package:idns_wallet/models/identity.dart';
+import 'package:idns_wallet/services/services.dart';
 
 class IdnsWalletHomeController extends GetxController {
   //
   static IdnsWalletHomeController get to =>
       Get.find<IdnsWalletHomeController>();
 
-  var menuIndex = 0.obs;
+  var currentIdentityId = "".obs;
 
-  var showEditPannel = true.obs;
+  List<IdentityModel> identities = <IdentityModel>[].obs;
 
-  var forceCollapse = false.obs;
-
-  void triggerForceCollapse() {
-    forceCollapse.value = !forceCollapse.value;
+  Future<void> refreshList() async {
+    IdnsIdentityService service = IdnsIdentityService.to;
+    var list = await service.list();
+    if (list == null) {
+      identities = <IdentityModel>[].obs;
+    } else {
+      identities = list;
+    }
     update();
   }
 }

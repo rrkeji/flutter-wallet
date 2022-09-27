@@ -37,10 +37,10 @@ class VerifiableCredentialCard extends StatelessWidget {
               top: 0,
               child: IconButton(
                 icon: Icon(
-                  verifiableCredential.name == ""
+                  verifiableCredential.sourceIdentity == ""
                       ? Icons.favorite
                       : Icons.favorite_border,
-                  color: verifiableCredential.name == ""
+                  color: verifiableCredential.sourceIdentity == ""
                       ? LightColor.red
                       : LightColor.iconColor,
                 ),
@@ -66,16 +66,16 @@ class VerifiableCredentialCard extends StatelessWidget {
                 ),
                 // SizedBox(height: 5),
                 TitleText(
-                  text: verifiableCredential.name,
+                  text: verifiableCredential.sourceIdentity,
                   fontSize: verifiableCredential.isSelected ? 16 : 14,
                 ),
                 TitleText(
-                  text: verifiableCredential.name,
+                  text: verifiableCredential.sourceIdentity,
                   fontSize: verifiableCredential.isSelected ? 14 : 12,
                   color: LightColor.orange,
                 ),
                 TitleText(
-                  text: verifiableCredential.name.toString(),
+                  text: verifiableCredential.sourceIdentity.toString(),
                   fontSize: verifiableCredential.isSelected ? 18 : 16,
                 ),
               ],

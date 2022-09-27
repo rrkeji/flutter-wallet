@@ -1,6 +1,7 @@
 import 'package:flutter_easylogger/flutter_logger.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart';
+import 'package:idns_wallet/generated/proto_types.dart';
+import 'package:idns_wallet/rust_api.dart';
 
 class LoginService extends GetxController {
   //
@@ -8,8 +9,19 @@ class LoginService extends GetxController {
 
   Future<String> importAccount(String phrase, String password) async {
     //保存并加密信息到本地
+    var request = LoginRequest(password: password, phrase: phrase);
 
-    throw Exception('Failed to load a case');
+    var command = Command(
+        serviceName: "idns.system.auth",
+        methodName: "user_import_and_login",
+        headers: {},
+        data: request.writeToBuffer());
+
+    var response = await rustRequest(command, LoginResponse.fromBuffer);
+    Logger.d(response.code);
+    Logger.d(response.message);
+    Logger.d(response.data);
+    return "";
   }
 
   Future<String> login(String password) async {
