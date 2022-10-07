@@ -256,6 +256,20 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  forme:
+    dependency: "direct main"
+    description:
+      name: forme
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.2.1"
+  forme_base_fields:
+    dependency: "direct main"
+    description:
+      name: forme_base_fields
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.3.1"
   freezed:
     dependency: "direct dev"
     description:
@@ -417,6 +431,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.2"
+  ndialog:
+    dependency: "direct main"
+    description:
+      name: ndialog
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.1.1+1"
   package_config:
     dependency: transitive
     description:

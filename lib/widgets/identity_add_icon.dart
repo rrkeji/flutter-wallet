@@ -7,7 +7,9 @@ import 'package:idns_wallet/widgets/extentions.dart';
 import 'package:get/get.dart';
 
 class IdentityAddIcon extends StatelessWidget {
-  IdentityAddIcon({Key? key}) : super(key: key);
+  void Function() onClick;
+
+  IdentityAddIcon({Key? key, required this.onClick}) : super(key: key);
 
   Widget build(BuildContext context) {
     return Container(
@@ -49,7 +51,9 @@ class IdentityAddIcon extends StatelessWidget {
           ],
         ),
       ).ripple(
-        () {},
+        () {
+          onClick();
+        },
         borderRadius: BorderRadius.all(Radius.circular(10)),
       ),
     );

@@ -8,6 +8,9 @@ import 'package:idns_wallet/widgets/identity_icon.dart';
 import 'package:idns_wallet/widgets/identity_add_icon.dart';
 import 'package:idns_wallet/widgets/extentions.dart';
 import 'package:get/get.dart';
+import 'package:ndialog/ndialog.dart';
+
+import 'package:idns_wallet/screens/identity/widgets/add_identity.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -58,7 +61,24 @@ class _MyHomePageState extends State<MyHomePage> {
                     )
                     .toList();
 
-                identities.add(IdentityAddIcon());
+                identities.add(IdentityAddIcon(onClick: () async {
+                  await AlertDialog(
+                    title: Text("添加身份"),
+                    content: AddIdentityForm(),
+                    actions: <Widget>[
+                      TextButton(
+                        child: Text("确定"),
+                        onPressed: () {},
+                      ),
+                      TextButton(
+                        child: Text("取消"),
+                        onPressed: () {
+                          Get.back();
+                        },
+                      )
+                    ],
+                  ).show(context);
+                }));
                 //
                 return identities;
               })());
